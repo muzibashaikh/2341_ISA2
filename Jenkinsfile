@@ -14,7 +14,7 @@ pipeline {
         stage('Build') {
             steps {
                 dir('2341_ISA2') {
-                    bat 'docker build -t mca2341/2341_mdp -f Dockerfile .'
+                    bat 'docker build -t mca2341/2341_MDP -f Dockerfile .'
                 }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
         stage('Run in Daemon Mode') {
             steps {
                 // Running the Docker container in daemon mode
-                bat 'docker run -d --name 2341 mca2341/2341_mdp'
+                bat 'docker run -d --name 2341 mca2341/2341_MDP'
             }
         }
     }
