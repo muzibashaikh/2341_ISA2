@@ -32,7 +32,7 @@ pipeline {
             steps {
                 bat 'docker rm -f 2341'
                 // Running the Docker container in daemon mode
-                bat 'docker run -d --name 2341 mca2341/2341_MDP'
+                bat 'docker run -d --name 2341 mca2341/2341_MDP .'
             }
         }
     }
