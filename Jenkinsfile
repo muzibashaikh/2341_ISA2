@@ -4,23 +4,17 @@ pipeline {
         PATH = "C:\\Program Files\\Docker\\Docker\\Resources\\bin;${env.PATH}" 
     }
     stages {
-        stage('Clean and Clone Repository') {
+        stage('Clone Repository') {
             steps {
-                cleanWs()
-                bat 'git clone https://github.com/muzibashaikh/Docker_image_via_Jenkins.git'
+                
+                bat 'git clone https://github.com/muzibashaikh/2341_ISA2.git'
             }
         }
-        stage('List Files') {
-            steps {
-                dir('Docker_image_via_Jenkins') {
-                    bat 'dir'
-                }
-            }
-        }
+        
         stage('Build') {
             steps {
-                dir('Docker_image_via_Jenkins') {
-                    bat 'docker build -t mca2341/2341_muziba -f Dockerfile .'
+                dir('2341_ISA2') {
+                    bat 'docker build -t mca2341/2341_MDP -f Dockerfile .'
                 }
             }
         }
@@ -31,14 +25,14 @@ pipeline {
         }
         stage('Push') {
             steps {
-                bat 'docker push mca2341/2341_muziba'
+                bat 'docker push mca2341/2341_MDP'
             }
         }
         stage('Run in Daemon Mode') {
             steps {
-                bat 'docker rm -f my_container'
+                bat 'docker rm -f 2341'
                 // Running the Docker container in daemon mode
-                bat 'docker run -d --name my_container mca2341/2341_muziba'
+                bat 'docker run -d --name 2341 mca2341/2341_MDP'
             }
         }
     }
