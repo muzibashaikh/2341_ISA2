@@ -1,4 +1,4 @@
-// MDP Lab exam    
+
 pipeline {
     agent any
     environment {
@@ -19,21 +19,16 @@ pipeline {
                 }
             }
         }
-        stage('Login') {
+       
+        stage('Delete') {
             steps {
-                bat 'docker login -u "mca2341" -p "muzi@dock82" docker.io'
-            }
-        }
-        stage('Push') {
-            steps {
-                bat 'docker push mca2341/2341_MDP'
+                bat 'docker rm -f 2341'
             }
         }
         stage('Run in Daemon Mode') {
             steps {
-                bat 'docker rm -f 2341'
                 // Running the Docker container in daemon mode
-                bat 'docker run -d --name 2341 mca2341/2341_MDP .'
+                bat 'docker run -d --name 2341 mca2341/2341_MDP'
             }
         }
     }
